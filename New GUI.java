@@ -4,14 +4,24 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Desktop;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileSystemView;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MainPage {
 
@@ -25,6 +35,7 @@ public class MainPage {
 	private JTextArea txtrYourDropbox;
 	private JTextArea txtrYouJustHave;
 	private JTextArea txtrUploadingOnYour;
+	File[] files;
 
 	/**
 	 * Launch the application.
@@ -53,6 +64,7 @@ public class MainPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame("Secure File");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 500, 500);
@@ -66,6 +78,24 @@ public class MainPage {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("OPEN  FILE");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                j.setDialogTitle("Select a File and an Image");
+                j.setMultiSelectionEnabled(true);
+                int r = j.showOpenDialog(null); 
+                if (r == JFileChooser.APPROVE_OPTION) 
+                { 
+                    files = j.getSelectedFiles();
+                    String fileNames = "";
+                    for(File file: files)
+                    {
+                        fileNames += file.getName() + " ; ";
+                    }
+                    textField.setText(fileNames);
+                } 
+			}
+		});
 		btnNewButton.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBorder(null);
@@ -90,6 +120,13 @@ public class MainPage {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("UPLOAD  TO  DROPBOX");
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try { Desktop.getDesktop().browse(new URI("https://www.dropbox.com/h")); } 
+		        catch (IOException | URISyntaxException e1) { e1.printStackTrace(); }
+			}
+		});
 		btnNewButton_2.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBorder(null);
