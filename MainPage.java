@@ -41,7 +41,7 @@ import javax.swing.JProgressBar;
 public class MainPage 
 {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
@@ -74,6 +74,7 @@ public class MainPage
 				try {
 					MainPage window = new MainPage();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
