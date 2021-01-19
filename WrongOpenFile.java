@@ -4,18 +4,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import java.awt.Window.Type;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JLabel;
+import java.awt.Point;
 
 public class WrongOpenFile extends JDialog {
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,6 +46,12 @@ public class WrongOpenFile extends JDialog {
 		setTitle("Error in File Type");
 		setBounds(100, 100, 450, 122);
 		getContentPane().setLayout(null);
+		
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Dimension screenSize = toolkit.getScreenSize();
+		final int x = (screenSize.width - getWidth()) / 2;
+		final int y = (screenSize.height - getHeight()) / 2;
+		setLocation(x, y);
 		
 		JTextArea txtrPlaintextFileShould = new JTextArea();
 		txtrPlaintextFileShould.setEditable(false);
