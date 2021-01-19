@@ -1,9 +1,11 @@
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 public class DecryptionCompleted extends JDialog {
 
@@ -16,6 +18,7 @@ public class DecryptionCompleted extends JDialog {
 				try {
 					DecryptionCompleted dialog = new DecryptionCompleted();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setLocationRelativeTo(null);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,6 +35,11 @@ public class DecryptionCompleted extends JDialog {
 		setResizable(false);
 		setBounds(100, 100, 314, 178);
 		getContentPane().setLayout(null);
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Dimension screenSize = toolkit.getScreenSize();
+		final int x = (screenSize.width - getWidth()) / 2;
+		final int y = (screenSize.height - getHeight()) / 2;
+		setLocation(x, y);
 		
 		JTextArea txtrFileDecryptedSuccessfully = new JTextArea();
 		txtrFileDecryptedSuccessfully.setEditable(false);
@@ -51,8 +59,8 @@ public class DecryptionCompleted extends JDialog {
 		
 		JTextArea txtrRecoveredPlaintextFile_1 = new JTextArea();
 		txtrRecoveredPlaintextFile_1.setEditable(false);
-		MainPage y = new MainPage();
-		txtrRecoveredPlaintextFile_1.setText(y.PlaintextFileRecoveredPathToSave);
+		MainPage q = new MainPage();
+		txtrRecoveredPlaintextFile_1.setText(q.PlaintextFileRecoveredPathToSave);
 		txtrRecoveredPlaintextFile_1.setFont(new Font("Calibri", Font.ITALIC, 16));
 		txtrRecoveredPlaintextFile_1.setBackground(SystemColor.controlHighlight);
 		txtrRecoveredPlaintextFile_1.setBounds(35, 102, 246, 16);
