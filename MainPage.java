@@ -36,6 +36,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import javax.swing.JProgressBar;
 
 public class MainPage 
 {
@@ -115,12 +116,20 @@ public class MainPage
                 if (r == JFileChooser.APPROVE_OPTION) 
                 { 
                     files = j.getSelectedFiles();
-                    String fileNames = "";
-                    for(File file: files)
-                    {
-                        fileNames += file.getName() + " ; ";
-                    }
-                    textField.setText(fileNames);
+                		if((files[0].getAbsolutePath()).endsWith(".txt")||(files[1].getAbsolutePath()).endsWith(".txt"))
+                    	{
+                			String fileNames = "";
+                            for(File file: files)
+                            {
+                                fileNames += file.getName() + " ; ";
+                            }
+                            textField.setText(fileNames);
+                    	}
+                		else
+                		{
+                			WrongOpenFile wof = new WrongOpenFile();
+                			wof.setVisible(true);
+                		}
                 } 
 			}
 		});
@@ -140,7 +149,8 @@ public class MainPage
 		frame.getContentPane().add(txtrSecureFileIs);
 		
 		btnNewButton_1 = new JButton("ENCRYPT");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		btnNewButton_1.addMouseListener(new MouseAdapter() 
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				JFileChooser fileChooser1 = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -196,6 +206,8 @@ public class MainPage
             	{
 					e1.printStackTrace();
 				}
+            	EncryptionCompleted ec = new EncryptionCompleted();
+            	ec.setVisible(true);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Calibri", Font.BOLD, 18));
@@ -266,6 +278,8 @@ public class MainPage
                 { f1.RunningTheCompleteDecryptFunction(); } 
                 catch (Exception e1) 
                 { e1.printStackTrace(); }
+            	DecryptionCompleted dc =new DecryptionCompleted();
+            	dc.setVisible(true);
 			}
 		});
 		btnNewButton_3.setFont(new Font("Calibri", Font.BOLD, 18));
@@ -1000,5 +1014,4 @@ public class MainPage
 		    e.printStackTrace();
     	}
     }
-	
 }
