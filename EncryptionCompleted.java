@@ -1,9 +1,11 @@
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Window.Type;
 
 public class EncryptionCompleted extends JDialog {
@@ -17,6 +19,7 @@ public class EncryptionCompleted extends JDialog {
 				try {
 					EncryptionCompleted dialog = new EncryptionCompleted();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setLocationRelativeTo(null);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,6 +37,11 @@ public class EncryptionCompleted extends JDialog {
 		getContentPane().setBackground(SystemColor.controlHighlight);
 		setBounds(100, 100, 300, 255);
 		getContentPane().setLayout(null);
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		final Dimension screenSize = toolkit.getScreenSize();
+		final int x = (screenSize.width - getWidth()) / 2;
+		final int y = (screenSize.height - getHeight()) / 2;
+		setLocation(x, y);
 		
 		JTextArea txtrFileEncryptedSuccessfully = new JTextArea();
 		txtrFileEncryptedSuccessfully.setBackground(SystemColor.controlHighlight);
@@ -60,8 +68,8 @@ public class EncryptionCompleted extends JDialog {
 		getContentPane().add(txtrCipherImageSaved);
 		
 		JTextArea txtrCiphertextFileSaved_1 = new JTextArea();
-		MainPage x = new MainPage();
-		txtrCiphertextFileSaved_1.setText(x.CipherFilePathToSave);
+		MainPage w = new MainPage();
+		txtrCiphertextFileSaved_1.setText(w.CipherFilePathToSave);
 		txtrCiphertextFileSaved_1.setFont(new Font("Calibri", Font.ITALIC, 16));
 		txtrCiphertextFileSaved_1.setEditable(false);
 		txtrCiphertextFileSaved_1.setBackground(SystemColor.controlHighlight);
@@ -69,7 +77,7 @@ public class EncryptionCompleted extends JDialog {
 		getContentPane().add(txtrCiphertextFileSaved_1);
 		
 		JTextArea txtrCiphertextFileSaved_2 = new JTextArea();
-		txtrCiphertextFileSaved_2.setText(x.CipherImagePathToSave);
+		txtrCiphertextFileSaved_2.setText(w.CipherImagePathToSave);
 		txtrCiphertextFileSaved_2.setFont(new Font("Calibri", Font.ITALIC, 16));
 		txtrCiphertextFileSaved_2.setEditable(false);
 		txtrCiphertextFileSaved_2.setBackground(SystemColor.controlHighlight);
