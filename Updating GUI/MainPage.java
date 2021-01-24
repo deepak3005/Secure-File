@@ -297,6 +297,7 @@ public class MainPage
 		frame.getContentPane().add(lblNewLabel);
 		
 		txtrSelecttxtFiles = new JTextArea();
+		txtrSelecttxtFiles.setEditable(false);
 		txtrSelecttxtFiles.setFont(new Font("Calibri", Font.BOLD, 14));
 		txtrSelecttxtFiles.setText("( Plaintext file type : \".txt\" )");
 		txtrSelecttxtFiles.setBackground(Color.LIGHT_GRAY);
